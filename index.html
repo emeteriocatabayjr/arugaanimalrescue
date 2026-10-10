@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aruga Animal Rescue | Give Rescued Cats & Dogs a Forever Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rescue-green: #2d6a4f;
+      --rescue-green-dark: #1b4332;
+      --rescue-orange: #f77f00;
+      --rescue-orange-dark: #d66f00;
+      --bg-light: #f8f9fa;
+      --text-dark: #2b2d42;
+      --text-muted: #6c757d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: #ffffff; line-height: 1.6; }
+
+    /* Top Utility Bar */
+    .top-bar { background: var(--rescue-green-dark); color: #ffffff; font-size: 0.82rem; padding: 8px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .top-bar a { color: #ffffff; text-decoration: none; margin-left: 16px; font-weight: 600; }
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* Header & Navigation */
+    header { background: #ffffff; border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .nav-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; }
+    .logo-container { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.35rem; color: var(--rescue-green-dark); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo-container span { color: var(--rescue-orange); }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--rescue-green-dark); font-weight: 700; font-size: 0.88rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--rescue-orange); }
+    .btn-adopt-nav { background: var(--rescue-orange); color: #ffffff !important; padding: 10px 22px; border-radius: 25px; font-weight: 800 !important; cursor: pointer; border: none; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+    .btn-adopt-nav:hover { background: var(--rescue-orange-dark); }
+
+    /* Hero Section */
+    .hero-container { position: relative; background: linear-gradient(rgba(27, 67, 50, 0.82), rgba(27, 67, 50, 0.90)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; color: #ffffff; padding: 80px 32px; text-align: center; }
+    .hero-content h1 { font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 900; max-width: 800px; margin: 0 auto 16px; line-height: 1.2; text-transform: uppercase; }
+    .hero-content p { font-size: 1.1rem; max-width: 650px; margin: 0 auto 36px; opacity: 0.95; }
+
+    /* Interactive Filter Widget */
+    .search-card { max-width: 1000px; margin: 0 auto; background: #ffffff; padding: 24px 32px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; gap: 16px; align-items: flex-end; justify-content: space-between; text-align: left; flex-wrap: wrap; }
+    .filter-group { flex: 1; min-width: 180px; }
+    .filter-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--rescue-green-dark); margin-bottom: 6px; }
+    .filter-group select { width: 100%; padding: 10px 14px; border: 1px solid #cccccc; border-radius: 6px; font-family: 'Open Sans', sans-serif; font-size: 0.9rem; }
+    .btn-search { background: var(--rescue-orange); color: #ffffff; padding: 12px 28px; border: none; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; cursor: pointer; font-size: 0.85rem; }
+    .btn-search:hover { background: var(--rescue-orange-dark); }
+
+    /* Section Layouts */
+    .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .section-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; text-align: center; color: var(--rescue-green-dark); margin-bottom: 12px; text-transform: uppercase; }
+    .section-sub { text-align: center; color: var(--text-muted); max-width: 650px; margin: 0 auto 48px; font-size: 1rem; }
+
+    /* Pet Gallery Grid */
+    .pet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; }
+    .pet-card { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.06); border: 1px solid #eeeeee; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+    .pet-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+    .pet-img { width: 100%; height: 240px; object-fit: cover; }
+    .pet-info { padding: 24px; }
+    .pet-info h3 { font-family: 'Montserrat', sans-serif; font-size: 1.35rem; color: var(--rescue-green-dark); margin-bottom: 4px; }
+    .pet-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+    .rescue-story { font-size: 0.9rem; color: var(--text-dark); background: var(--bg-light); padding: 12px; border-radius: 6px; border-left: 4px solid var(--rescue-orange); margin-bottom: 20px; }
+    .btn-adopt { background: var(--rescue-green); color: #ffffff; width: 100%; padding: 12px; border: none; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 800; text-transform: uppercase; cursor: pointer; font-size: 0.85rem; }
+    .btn-adopt:hover { background: var(--rescue-green-dark); }
+    .no-results { grid-column: 1 / -1; text-align: center; padding: 48px; color: var(--text-muted); font-size: 1.1rem; }
+
+    /* Happy Tails Section (Unified Grid) */
+    .success-section { background: var(--bg-light); padding: 80px 32px; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
+    .success-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .success-card { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+    .success-img { width: 100%; height: 180px; object-fit: cover; }
+    .success-info { padding: 16px; }
+    .success-info h4 { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--rescue-green-dark); margin-bottom: 4px; }
+    .success-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Shelter Location & Map Section */
+    .location-section { padding: 80px 32px; }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .location-details h3 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; color: var(--rescue-green-dark); margin-bottom: 16px; }
+    .location-details p { margin-bottom: 12px; font-size: 1rem; color: var(--text-dark); }
+    .map-container { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #cccccc; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+    /* Modal Overlay */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(27, 67, 50, 0.8); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; }
+    .modal-card { background: #ffffff; border-radius: 12px; max-width: 520px; width: 100%; padding: 36px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal-close { position: absolute; top: 16px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); background: none; border: none; }
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: var(--rescue-green-dark); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid #cccccc; border-radius: 6px; font-size: 0.9rem; font-family: 'Open Sans', sans-serif; }
+
+    /* Footer */
+    footer { background: var(--rescue-green-dark); color: #a0a0a0; padding: 48px 32px 32px; text-align: center; font-size: 0.88rem; }
+    footer a { color: #ffffff; text-decoration: none; font-weight: 600; }
+    .agency-credit { margin-top: 24px; padding-top: 16px; border-top: 1px solid #2d6a4f; font-size: 0.82rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="top-bar">
+    <div>🐾 Rescue, Rehabilitate, Rehome • Open daily for visitors from 10 AM to 5 PM.</div>
+    <div>
+      <a href="#success">Happy Tails</a>
+      <a href="#location">Visit Shelter</a>
+      <a href="https://m.me/your-page-username" target="_blank">Messenger Chat</a>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-container">
+        ARUGA <span>ANIMAL RESCUE</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#pets">Adoptable Pets (20)</a></li>
+        <li><a href="#success">Happy Tails</a></li>
+        <li><a href="#location">Shelter Location</a></li>
+        <li><button class="btn-adopt-nav" onclick="openAdoptionModal('General Adoption Inquiry', 'Shelter')">Inquire to Adopt</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-container">
+    <div class="hero-content">
+      <h1>Give Rescued Cats & Dogs A Second Chance</h1>
+      <p>Explore our current roster of 10 rescue dogs and 10 rescue cats waiting for loving forever homes in Metro Manila.</p>
+      
+      <!-- Filter Bar -->
+      <div class="search-card">
+        <div class="filter-group">
+          <label for="filter-species">Species</label>
+          <select id="filter-species">
+            <option value="all">All Pets (20 Available)</option>
+            <option value="dog">Dogs (10)</option>
+            <option value="cat">Cats (10)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-gender">Gender</label>
+          <select id="filter-gender">
+            <option value="all">Any Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-size">Size</label>
+          <select id="filter-size">
+            <option value="all">Any Size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filter-age">Age Group</label>
+          <select id="filter-age">
+            <option value="all">Any Age</option>
+            <option value="puppy">Puppy / Kitten</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+          </select>
+        </div>
+        <button class="btn-search" onclick="filterPets()">Search Pets</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pet Gallery Section -->
+  <section id="pets" class="container">
+    <h2 class="section-title">Meet Our Rescued Pets</h2>
+    <p class="section-sub">All pets are fully vaccinated, spayed/neutered, dewormed, and microchipped.</p>
+
+    <div class="pet-grid" id="pet-grid">
+      <!-- Dynamic Pet Cards rendered via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Happy Tails Section (Unified Success Stories with New Families) -->
+  <section id="success" class="success-section">
+    <h2 class="section-title">Happy Tails: Adopted & Loved</h2>
+    <p class="section-sub">Heartwarming moments of our former shelter residents bonded with their new human parents.</p>
+
+    <div class="success-grid">
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" alt="Max and Parents" class="success-img">
+        <div class="success-info">
+          <h4>Max (Male) with Mom Sarah & Dad Mark</h4>
+          <p>Adopted Jan 2025 • Enjoying morning walks around Quezon City.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Cleo and Owner" class="success-img">
+        <div class="success-info">
+          <h4>Cleo (Female) with Teacher Bea</h4>
+          <p>Adopted Nov 2024 • Certified professional lap cat and study assistant.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=80" alt="Cooper and Parents" class="success-img">
+        <div class="success-info">
+          <h4>Cooper (Male) with Dad John & Mom Elena</h4>
+          <p>Adopted Aug 2024 • Went from timid stray to pampered couch buddy.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80" alt="Mimi and Owner" class="success-img">
+        <div class="success-info">
+          <h4>Mimi (Female) with Kuya Marco</h4>
+          <p>Adopted Mar 2025 • Expert at supervising remote work spreadsheets.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Winston and Family" class="success-img">
+        <div class="success-info">
+          <h4>Winston (Male) with The Dizon Family</h4>
+          <p>Adopted Dec 2024 • Spends weekends hiking with his human siblings.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=80" alt="Simba and Parents" class="success-img">
+        <div class="success-info">
+          <h4>Simba (Male) with Mom Karen & Dad Ken</h4>
+          <p>Adopted Oct 2024 • Loves napping under the living room sunlight.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=600&q=80" alt="Bantay and Parents" class="success-img">
+        <div class="success-info">
+          <h4>Bantay (Male) with Mom Clarisse</h4>
+          <p>Adopted Nov 2024 • Living his best golden years in Marikina.</p>
+        </div>
+      </div>
+      <div class="success-card">
+        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80" alt="Luna and Owner" class="success-img">
+        <div class="success-info">
+          <h4>Luna (Female) with Ate Michelle</h4>
+          <p>Adopted Jan 2025 • Obsessed with chasing toy mice around the condo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shelter Location & Map Section -->
+  <section id="location" class="location-section">
+    <div class="location-grid">
+      <div class="location-details">
+        <h3>Visit Our Shelter Sanctuary</h3>
+        <p><strong>Aruga Animal Rescue Center</strong></p>
+        <p>📍 148 Quirino Highway, Brgy. Talipapa, Novaliches, Quezon City, Metro Manila, Philippines</p>
+        <p>🕒 Visiting Hours: Monday to Sunday (10:00 AM – 5:00 PM)</p>
+        <p>📞 Contact: +63 917 555 3872 / rescue@arugaanimal.org</p>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-muted);">Walk-in visitors are welcome! Please bring a valid government ID if you plan to initiate an adoption walkthrough.</p>
+      </div>
+      <div class="map-container">
+        <!-- Embedded Google Map centered on Novaliches, Quezon City -->
+        <iframe title="Shelter Location Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.0883395982!2d121.0315!3d14.6760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsEM0MCd2Ni4wIk4gMTIxwrAwMSf1NC4wIkU!5e0!3m2!1sen!2sph!4v1650000000000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Aruga Animal Rescue. All rights reserved.</p>
+    <div class="agency-credit">
+      Pro bono digital infrastructure & web architecture powered by <strong>AgapayDigital PH</strong>.
+    </div>
+  </footer>
+
+  <!-- Adoption Application Modal -->
+  <div class="modal-overlay" id="adoption-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeAdoptionModal()">×</button>
+      <h3 id="modal-pet-title" style="font-family:'Montserrat', sans-serif; font-size:1.4rem; color:var(--rescue-green-dark); margin-bottom:4px;">Adoption Application</h3>
+      <p id="modal-pet-subtitle" style="font-size:0.88rem; color:var(--text-muted); margin-bottom:20px;">Fill out your details to begin the foster-to-adopt process.</p>
+
+      <form onsubmit="handleAdoptionSubmit(event)">
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" placeholder="e.g. Juan Dela Cruz" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number / GCash Contact</label>
+          <input type="tel" placeholder="0917XXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label>Complete Residential Address</label>
+          <input type="text" placeholder="House No., Street, Barangay, City" required>
+        </div>
+        <div class="form-group">
+          <label>Do you currently own pets or have a fenced yard?</label>
+          <textarea rows="3" placeholder="Briefly describe your home setup and pet experience..." required></textarea>
+        </div>
+        <button type="submit" class="btn-adopt" style="margin-top:10px;">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 20 Unique Rescue Pets Dataset (10 Dogs + 10 Cats) with gender property
+    const petsData = [
+      // 10 Dogs
+      { name: "Brownie", species: "dog", gender: "male", size: "medium", age: "adult", ageText: "2 yrs old", story: "Rescued from heavy expressway traffic in Balintawak with a healed leg fracture. Extremely gentle and loves belly rubs.", img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" },
+      { name: "Bruno", species: "dog", gender: "male", size: "large", age: "senior", ageText: "7 yrs old", story: "Found abandoned outside a wet market in Novaliches during a heavy thunderstorm. Calm demeanor, great with older kids.", img: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=80" },
+      { name: "Kambal", species: "dog", gender: "female", size: "small", age: "adult", ageText: "3 yrs old", story: "Rescued from an illegal hoarding case in Bulacan along with four other rescues. Very friendly and leash-trained.", img: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" },
+      { name: "Max", species: "dog", gender: "male", size: "large", age: "puppy", ageText: "6 mos old", story: "Surrendered by a family who moved abroad and could not bring him along. Energetic, eager to learn, and great at catch.", img: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80" },
+      { name: "Princess", species: "dog", gender: "female", size: "small", age: "senior", ageText: "9 yrs old", story: "Found tied to a post near a barangay hall in Caloocan. Seeking a quiet retirement home with soft beds and lots of naps.", img: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=600&q=80" },
+      { name: "Rocky", species: "dog", gender: "male", size: "medium", age: "adult", ageText: "4 yrs old", story: "Stray rescued from an industrial park in Valenzuela with minor paw scratches. Now fully healed and very protective.", img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80" },
+      { name: "Cookie", species: "dog", gender: "female", size: "small", age: "puppy", ageText: "3 mos old", story: "Rescued inside a cardboard box left outside our shelter gates at dawn. Playful, vocal, and loves puppy treats.", img: "https://images.unsplash.com/photo-1596249492195-24c7f07e5d80?auto=format&fit=crop&w=600&q=80" },
+      { name: "Choco", species: "dog", gender: "male", size: "medium", age: "adult", ageText: "5 yrs old", story: "Saved from a backyard breeding kennel shutdown in Pampanga. Shy at first, but warms up with patient affection.", img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80" },
+      { name: "Blackie", species: "dog", gender: "male", size: "large", age: "adult", ageText: "3 yrs old", story: "Stray dog who befriended security guards at a QC construction site before being brought in for safety. Very loyal.", img: "https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&q=80" },
+      { name: "Bantay", species: "dog", gender: "male", size: "medium", age: "senior", ageText: "8 yrs old", story: "Long-time shelter resident who loves greeting new volunteers. Looking for a family to spend his golden years with.", img: "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=600&q=80" },
+
+      // 10 Cats
+      { name: "Mingming", species: "cat", gender: "female", size: "small", age: "adult", ageText: "1 yr old", story: "Surrendered by an elderly owner who could no longer afford medical care. Litter-trained, quiet, and very affectionate.", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" },
+      { name: "Luna", species: "cat", gender: "female", size: "small", age: "puppy", ageText: "4 mos old", story: "Rescued as a tiny kitten trapped inside a drainage pipe behind a QC school. Playful, curious, and bonded with toys.", img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80" },
+      { name: "Simba", species: "cat", gender: "male", size: "medium", age: "adult", ageText: "2 yrs old", story: "Found wandering around a gasoline station with a severe skin infection, now fully recovered with a glossy orange coat.", img: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=80" },
+      { name: "Nala", species: "cat", gender: "female", size: "small", age: "adult", ageText: "3 yrs old", story: "Rescued from a wet market stall in Malabon where she hunted pests. Very independent yet loves head scratches in the evening.", img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80" },
+      { name: "Tiger", species: "cat", gender: "male", size: "medium", age: "senior", ageText: "10 yrs old", story: "Senior tabby surrendered after her human passed away. Extremely lap-friendly, mellow, and sleeps 18 hours a day.", img: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=600&q=80" },
+      { name: "Oreo", species: "cat", gender: "male", size: "small", age: "puppy", ageText: "5 mos old", story: "Tuxedo kitten rescued from underneath a parked jeepney in EDSA. Full of energy, chases laser pointers tirelessly.", img: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=600&q=80" },
+      { name: "Bella", species: "cat", gender: "female", size: "small", age: "adult", ageText: "2 yrs old", story: "Found roaming around an apartment complex in Quezon City, heavily pregnant. All kittens adopted out; now it's her turn!", img: "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80" },
+      { name: "Felix", species: "cat", gender: "male", size: "medium", age: "adult", ageText: "4 yrs old", story: "Rescued with a mild ear mite infection now fully treated. Loves birdwatching from high windows and eating wet food.", img: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=600&q=80" },
+      { name: "Mimi", species: "cat", gender: "female", size: "small", age: "puppy", ageText: "3 mos old", story: "Rescued during a barangay flood rescue operation clinging to a wooden pallet. Very vocal and playful.", img: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=80" },
+      { name: "Garfield", species: "cat", gender: "male", size: "large", age: "senior", ageText: "9 yrs old", story: "Chunky orange rescue cat found near a bakery in Mandaluyong. Enjoys lounging on couches and gentle grooming.", img: "https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&w=600&q=80" }
+    ];
+
+    // Render Pet Cards
+    function renderPets(list) {
+      const grid = document.getElementById('pet-grid');
+      grid.innerHTML = '';
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="no-results">No pets matching your filter criteria right now. Please try different filters!</div>';
+        return;
+      }
+      list.forEach(p => {
+        const genderLabel = p.gender.toUpperCase();
+        grid.innerHTML += `
+          <div class="pet-card">
+            <img src="${p.img}" alt="${p.name}" class="pet-img">
+            <div class="pet-info">
+              <h3>${p.name}</h3>
+              <div class="pet-meta">${genderLabel} • ${p.ageText} • ${p.size.toUpperCase()} • ${p.species.toUpperCase()}</div>
+              <div class="rescue-story"><strong>Rescue Story:</strong> ${p.story}</div>
+            </div>
+            <div style="padding: 0 24px 24px 24px;">
+              <button class="btn-adopt" onclick="openAdoptionModal('${p.name}', '${p.species.toUpperCase()} • ${genderLabel} • ${p.ageText}')">Adopt ${p.name}</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Real-Time Filter Function
+    function filterPets() {
+      const species = document.getElementById('filter-species').value;
+      const gender = document.getElementById('filter-gender').value;
+      const size = document.getElementById('filter-size').value;
+      const ageGroup = document.getElementById('filter-age').value;
+
+      const filtered = petsData.filter(p => {
+        const matchesSpecies = (species === 'all' || p.species === species);
+        const matchesGender = (gender === 'all' || p.gender === gender);
+        const matchesSize = (size === 'all' || p.size === size);
+        const matchesAge = (ageGroup === 'all' || p.age === ageGroup);
+
+        return matchesSpecies && matchesGender && matchesSize && matchesAge;
+      });
+
+      renderPets(filtered);
+    }
+
+    // Modal Handling
+    function openAdoptionModal(petName, details) {
+      document.getElementById('modal-pet-title').innerText = "Adopt " + petName;
+      document.getElementById('modal-pet-subtitle').innerText = "Rescue Profile: " + details;
+      document.getElementById('adoption-modal').style.display = 'flex';
+    }
+
+    function closeAdoptionModal() {
+      document.getElementById('adoption-modal').style.display = 'none';
+    }
+
+    function handleAdoptionSubmit(e) {
+      e.preventDefault();
+      alert('Maraming salamat! Your adoption application has been received. Our shelter coordinator will review your details and message you via Messenger / SMS within 24 hours.');
+      closeAdoptionModal();
+    }
+
+    // Initial Render
+    renderPets(petsData);
+  </script>
+</body>
+</html>
